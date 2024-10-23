@@ -1,0 +1,28 @@
+---
+const personalImageAlt = "Sebastian Salgado";
+---
+
+<article
+  class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row relative"
+>
+  <!-- Contenedor para la imagen y la flecha con texto -->
+  <div class="flex items-center justify-center flex-col md:flex-row">
+    <a
+      href="https://www.linkedin.com/in/sebastián-salgado-polanco-79137b296/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="order-1 md:order-2 relative"
+      aria-label="Perfil de LinkedIn"
+    >
+      <img
+        width="200"
+        height="200"
+        src="/face2.jpg"
+        alt={personalImageAlt}
+        class="rounded-full object-cover w-64 h-full p-1 rotate-3 lg:p-2 lg:w-64 aspect-square bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
+        style="object-position: 50% 50%"
+      />
+      <div class="arrow-text">Presiona en mi cara!!</div>
+    </a>
+  </div>
+</article>

@@ -1,0 +1,113 @@
+---
+import Briefcase from "@/components/icons/Briefcase.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import ProfileCheck from "@/components/icons/ProfileCheck.astro";
+import Home from "@/components/icons/Home.astro";
+---
+
+<header
+  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+>
+  <nav
+    class="flex px-3 font-medium rounded-full text-gray-900 dark:text-gray-800 justify-center items-center space-x-4"
+  >
+    <a
+      class="nav-link relative flex items-center justify-center px-5 py-3 transition hover:text-blue-600 dark:hover:text-blue-800"
+      aria-label="Inicio"
+      href="/#inicio"
+    >
+      <Home class="size-6 mr-2" />
+      Inicio
+    </a>
+
+    <a
+      class="nav-link relative flex items-center justify-center px-5 py-3 transition hover:text-blue-600 dark:hover:text-blue-800"
+      aria-label="Experiencia"
+      href="/#experiencia"
+    >
+      <Briefcase class="size-6 mr-2" />
+      Experiencia
+    </a>
+
+    <a
+      class="nav-link relative flex items-center justify-center px-5 py-3 transition hover:text-blue-600 dark:hover:text-blue-800"
+      aria-label="Proyectos"
+      href="/#proyectos"
+    >
+      <CodeIcon class="size-6 mr-2" />
+      Proyectos
+    </a>
+
+    <a
+      class="nav-link relative flex items-center justify-center px-5 py-3 transition hover:text-blue-600 dark:hover:text-blue-800"
+      aria-label="Sobre mí"
+      href="/#sobre-mi"
+    >
+      <ProfileCheck class="size-6 mr-2" />
+      Sobre mí
+    </a>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("header nav a");
+
+    const callback = (entries: any[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => {
+            if (item.getAttribute("aria-label") === entry.target.id) {
+              item.classList.add("text-blue-500");
+            } else {
+              item.classList.remove("text-blue-500");
+            }
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      root: null, // Puedes ajustar esto si quieres limitar el área de observación a un contenedor específico.
+      rootMargin: "0px 0px -50% 0px", // Esto aumentará el área de intersección, haciendo más probable que la sección se marque como intersectada.
+      threshold: 0.1, // Un umbral más bajo significa que se disparará más rápidamente, incluso si solo una pequeña parte de la sección está visible.
+    });
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Cleanup function
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect();
+      } else {
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+      }
+    };
+  });
+</script>
+
+<style>
+  nav {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  nav {
+    @apply dark:bg-gray-800/90 bg-white/50;
+  }
+
+  @keyframes nav-shadown {
+    0% {
+      @apply dark:bg-gray-800/0 bg-white/0;
+    }
+    to {
+      @apply shadow-lg ring-1 backdrop-blur ring-white/10;
+    }
+  }
+</style>
