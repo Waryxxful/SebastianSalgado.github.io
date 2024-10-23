@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 👨🏻‍💻 Porfolio para programadores y desarrolladores
 
 <div align="center">
@@ -25,3 +26,7 @@
 </a>
 
 <p></p>
+=======
+# portfolio-seba
+Inspirado y codigo reutilizado de Midudev
+>>>>>>> 9e0828d0103946146d0a0e9208cf0ea27709e0f1
